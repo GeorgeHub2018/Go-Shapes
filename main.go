@@ -94,6 +94,13 @@ func (r Circle) Say() {
 		r.Type, r.Radius, r.Square(), r.Perim())
 }
 
+// Say method for shape list
+func (l ShapeList) Say() {
+	for _, shape := range l.List {
+		shape.Say()
+	}
+}
+
 func newRectangle(Width, Height float64) Rectangle {
 	return Rectangle{Width, Height, "Rectangle"}
 }
@@ -110,7 +117,5 @@ func main() {
 	list.List["2"] = newRectangle(5, 6)
 	list.List["3"] = newTriangle(3, 4, 5)
 
-	for _, shape := range list.List {
-		shape.Say()
-	}
+	list.Say()
 }
