@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"strconv"
 )
 
 //Shape shape
@@ -101,6 +102,12 @@ func (l ShapeList) Say() {
 	}
 }
 
+// Add shape to ShapeList
+func (l *ShapeList) Add(s Shape) {
+	index := len(l.List)
+	l.List[strconv.Itoa(index)] = s
+}
+
 func newRectangle(Width, Height float64) Rectangle {
 	return Rectangle{Width, Height, "Rectangle"}
 }
@@ -113,9 +120,9 @@ func newCircle(Radius float64) Circle {
 func main() {
 	list := ShapeList{List: make(map[string]Shape)}
 
-	list.List["1"] = newCircle(5)
-	list.List["2"] = newRectangle(5, 6)
-	list.List["3"] = newTriangle(3, 4, 5)
+	list.Add(newCircle(5))
+	list.Add(newRectangle(5, 6))
+	list.Add(newTriangle(3, 4, 5))
 
 	list.Say()
 }
